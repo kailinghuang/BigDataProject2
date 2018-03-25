@@ -69,9 +69,8 @@ mrf$gattach[mrf$gattach=='n']<-7
 # gspace
 mrf$gspace<-as.character(mrf$gspace)
 mrf$gspace[mrf$gspace=='c']<-1
-mrf$gspace[mrf$gspace=='d']<-3
-mrf$gspace[mrf$gspace=='f']<-5
-mrf$gspace[mrf$gspace=='n']<-7
+mrf$gspace[mrf$gspace=='w']<-3
+mrf$gspace[mrf$gspace=='d']<-5
 # gsize
 mrf$gsize<-as.character(mrf$gsize)
 mrf$gsize[mrf$gsize=='b']<-1
