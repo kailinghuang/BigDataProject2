@@ -17,7 +17,8 @@ Find out the mushroom types in poisonous class which are uncertain.
 1. load data in table
 2. convert data to data fame
 3. change name of attributes
-4. convert letters to values in dataset
+4. divide dataset according to training-test ratio 50-50 40-60 30-70
+5. convert letters to values in dataset
 
 the rules to convert letters is according to professor's doc:
 using consecutive odd.

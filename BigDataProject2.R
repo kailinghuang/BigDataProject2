@@ -13,16 +13,6 @@ names(mr)<-c('class', 'cshape', 'csurface', 'ccolor', 'bruises', 'odor', 'gattac
              'rnumber', 'rtype', 'spcolor', 'popnum', 'habitat')
 names(mr)
 
-## training-test dataset
-train.df<-sample(nrow(mr), 0.7*nrow(mr))
-#train.df<-sample(nrow(mr), 0.6*nrow(mr))
-#train.df<-sample(nrow(mr), 0.5*nrow(mr))
-
-#train set
-mrtrain.df<-mr[train.df,]
-#test set
-mrtest.df<-mr[-train.df,]
-
 
 mrf<-as.data.frame(mr,stringAsFactors=FALSE)
 mrf[,c(1,23)]<-sapply(mrf[,c(1,23)], as.character)
@@ -197,6 +187,18 @@ mrf$habitat[mrf$habitat=='u']<-9
 mrf$habitat[mrf$habitat=='w']<-11
 mrf$habitat[mrf$habitat=='d']<-13
 
+## training-test dataset
+train.df<-sample(nrow(mrf), 0.7*nrow(mrf))
+#train.df<-sample(nrow(mr), 0.6*nrow(mr))
+#train.df<-sample(nrow(mr), 0.5*nrow(mr))
+
+#train set
+mrftrain.df<-mrf[train.df,]
+#test set
+mrftest.df<-mrf[-train.df,]
+
+# k-means
+mrftrain.kc<-kmeans(mrftrain.df,3)
 
 
 pairs(class~cshape+csurface+ccolor, data=mr)
