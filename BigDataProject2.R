@@ -13,12 +13,15 @@ names(mr)<-c('class', 'cshape', 'csurface', 'ccolor', 'bruises', 'odor', 'gattac
              'rnumber', 'rtype', 'spcolor', 'popnum', 'habitat')
 names(mr)
 
+
+
 mrf<-as.data.frame(mr,stringAsFactors=FALSE)
 mrf[,c(1,23)]<-sapply(mrf[,c(1,23)], as.character)
 # class
 mrf$class[mrf$class=='e']<-0
 mrf$class[mrf$class=='p']<-1
 # cap-shape
+mrf$cshape<-as.character(mrf$cshape)
 mrf$cshape[mrf$cshape=='b']<-1
 mrf$cshape[mrf$cshape=='c']<-3
 mrf$cshape[mrf$cshape=='x']<-5
@@ -26,21 +29,23 @@ mrf$cshape[mrf$cshape=='f']<-7
 mrf$cshape[mrf$cshape=='k']<-9
 mrf$cshape[mrf$cshape=='s']<-11
 # cap-surface
-mrf$class[mrf$csurface=='f']<-1
-mrf$class[mrf$csurface=='g']<-3
-mrf$class[mrf$csurface=='y']<-5
-mrf$class[mrf$csurface=='s']<-7
+mrf$csurface<-as.character(mrf$csurface)
+mrf$csurface[mrf$csurface=='f']<-1
+mrf$csurface[mrf$csurface=='g']<-3
+mrf$csurface[mrf$csurface=='y']<-5
+mrf$csurface[mrf$csurface=='s']<-7
 # cap-color
-mrf$class[mrf$ccolor=='n']<-1
-mrf$class[mrf$ccolor=='b']<-3
-mrf$class[mrf$ccolor=='c']<-5
-mrf$class[mrf$ccolor=='g']<-7
-mrf$class[mrf$ccolor=='r']<-9
-mrf$class[mrf$ccolor=='p']<-11
-mrf$class[mrf$ccolor=='u']<-13
-mrf$class[mrf$ccolor=='e']<-15
-mrf$class[mrf$ccolor=='w']<-17
-mrf$class[mrf$ccolor=='y']<-19
+mrf$ccolor<-as.character(mrf$ccolor)
+mrf$ccolor[mrf$ccolor=='n']<-1
+mrf$ccolor[mrf$ccolor=='b']<-3
+mrf$ccolor[mrf$ccolor=='c']<-5
+mrf$ccolor[mrf$ccolor=='g']<-7
+mrf$ccolor[mrf$ccolor=='r']<-9
+mrf$ccolor[mrf$ccolor=='p']<-11
+mrf$ccolor[mrf$ccolor=='u']<-13
+mrf$ccolor[mrf$ccolor=='e']<-15
+mrf$ccolor[mrf$ccolor=='w']<-17
+mrf$ccolor[mrf$ccolor=='y']<-19
 # bruises
 mrf$class[mrf$bruises=='t']<-1
 mrf$class[mrf$bruises=='f']<-3
