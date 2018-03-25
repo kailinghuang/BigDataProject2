@@ -169,6 +169,10 @@ mrf$spcolor[mrf$spcolor=='n']<-3
 mrf$spcolor[mrf$spcolor=='b']<-5
 mrf$spcolor[mrf$spcolor=='h']<-7
 mrf$spcolor[mrf$spcolor=='r']<-9
+mrf$spcolor[mrf$spcolor=='o']<-11
+mrf$spcolor[mrf$spcolor=='u']<-13
+mrf$spcolor[mrf$spcolor=='w']<-15
+mrf$spcolor[mrf$spcolor=='y']<-17
 # popnum
 mrf$popnum<-as.character(mrf$popnum)
 mrf$popnum[mrf$popnum=='a']<-1
@@ -188,9 +192,9 @@ mrf$habitat[mrf$habitat=='w']<-11
 mrf$habitat[mrf$habitat=='d']<-13
 
 ## training-test dataset
-train.df<-sample(nrow(mrf), 0.7*nrow(mrf))
-#train.df<-sample(nrow(mr), 0.6*nrow(mr))
-#train.df<-sample(nrow(mr), 0.5*nrow(mr))
+mrftrain.df<-sample(nrow(mrf), 0.7*nrow(mrf))
+#mrftrain.df<-sample(nrow(mr), 0.6*nrow(mr))
+#mrftrain.df<-sample(nrow(mr), 0.5*nrow(mr))
 
 #train set
 mrftrain.df<-mrf[train.df,]
@@ -198,7 +202,7 @@ mrftrain.df<-mrf[train.df,]
 mrftest.df<-mrf[-train.df,]
 
 # k-means
-mrftrain.kc<-kmeans(mrftrain.df,3)
+kc3_37<-kmeans(mrftrain.df,3)
 
 
 pairs(class~cshape+csurface+ccolor, data=mr)
