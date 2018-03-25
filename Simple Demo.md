@@ -11,7 +11,8 @@ Find out the mushroom types in poisonous class which are uncertain.
 ##Generally speaking, we need get 3\*3\*3=27 result. three methods, three classes, 3 training-test ratios
 
 ##Things before start (pretreat data set)
-<front color=#FF0000 size=7> (I have done this part in file BigDataProject2)</front>
+
+###(I have done this part in file BigDataProject2.R)
 
 1. load data in table
 2. convert data to data fame
