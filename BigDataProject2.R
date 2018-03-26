@@ -1,4 +1,4 @@
-
+library(class)
 
 setwd('/Users/yiqian/Documents/GitHub/BigDataProject2')
 
@@ -205,7 +205,7 @@ mrftest.df<-mrf[-train.df,]
 #mrftest.df<-mrf[-train.df,]
 
 
-# k-means
+# k-means (whether k-means need train and test data set????)
 # train
 kc3_37_train<-kmeans(mrftrain.df,3)
 #kc5_37_train<-kmeans(mrftrain.df,5)
