@@ -191,18 +191,29 @@ mrf$habitat[mrf$habitat=='w']<-11
 mrf$habitat[mrf$habitat=='d']<-13
 
 ## training-test dataset
-mrftrain.df<-sample(nrow(mrf), 0.7*nrow(mrf))
-#mrftrain.df<-sample(nrow(mr), 0.6*nrow(mr))
-#mrftrain.df<-sample(nrow(mr), 0.5*nrow(mr))
+train.df<-sample(nrow(mrf), 0.7*nrow(mrf))
+#train.df<-sample(nrow(mrf), 0.6*nrow(mrf))
+#train.df<-sample(nrow(mrf), 0.5*nrow(mrf))
 
 #train set
 mrftrain.df<-mrf[train.df,]
-#test set
+#mrftrain.df<-mrf[train.df,]
+#mrftrain.df<-mrf[train.df,]
+#mrftest set
 mrftest.df<-mrf[-train.df,]
+#mrftest.df<-mrf[-train.df,]
+#mrftest.df<-mrf[-train.df,]
+
 
 # k-means
-kc3_37<-kmeans(mrftrain.df,3)
-
+# train
+kc3_37_train<-kmeans(mrftrain.df,3)
+#kc5_37_train<-kmeans(mrftrain.df,5)
+#kc7_37_train<-kmeans(mrftrain.df,7)
+# test
+kc3_37_test<-kmeans(mrftest.df,3)
+#kc5_37_test<-kmeans(mrftest.df,5)
+#kc7_37_test<-kmeans(mrftest.df,7)
 
 pairs(class~cshape+csurface+ccolor, data=mr)
 
