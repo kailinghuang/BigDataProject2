@@ -1,4 +1,7 @@
+install.packages("class")
+install.packages("gmodels")
 library(class)
+library(gmodels)
 
 setwd('/Users/yiqian/Documents/GitHub/BigDataProject2')
 
@@ -207,13 +210,29 @@ mrftest.df<-mrf[-train.df,]
 
 # k-means (whether k-means need train and test data set????)
 # train
-kc3_37_train<-kmeans(mrftrain.df,3)
-#kc5_37_train<-kmeans(mrftrain.df,5)
-#kc7_37_train<-kmeans(mrftrain.df,7)
+kc3_train<-kmeans(mrftrain.df,3)
+#kc5_train<-kmeans(mrftrain.df,5)
+#kc7_train<-kmeans(mrftrain.df,7)
 # test
-kc3_37_test<-kmeans(mrftest.df,3)
-#kc5_37_test<-kmeans(mrftest.df,5)
-#kc7_37_test<-kmeans(mrftest.df,7)
+kc3_test<-kmeans(mrftest.df,3)
+#kc5_test<-kmeans(mrftest.df,5)
+#kc7_test<-kmeans(mrftest.df,7)
+
+# knn
+# get train label
+knn_train_label<-mrftrain.df[,1]
+# remove label
+knn_train_data<-mrftrain.df[,2:23]
+knn_test_data<-mrftest.df[,2:23]
+# return prediction of test set
+knn_pred<-knn(train=knn_train_data, test=knn_test_data, cl=knn_train_label, 24)
+# eveluating knn
+knn_test_label<-mrftest.df[,1]
+CrossTable(x=knn_test_label, y=knn_pred, prop.chisq=FALSE)
+
+# Hierarchical clustering
+
+
 
 pairs(class~cshape+csurface+ccolor, data=mr)
 
