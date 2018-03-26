@@ -6,9 +6,11 @@ Find out the mushroom types in poisonous class which are uncertain.
 2. try to cluster data more than 3 classes (N=3,5,7). 
 3. try three different training-test ratios.
 4. plots using serveral methods in lectures 4 and 6
+5. try lm and glm methods get linear fits for the data
+6. SVM separate the combined data set
 
 
-##Generally speaking, we need get 3\*3\*3=27 result. three methods, three classes, 3 training-test ratios
+##Generally speaking, we need get 3\*3\*3=27 result. three methods, three classes, 3 training-test ratios. Determine the attributes used lm and glm methods. Separate data by SVM.
 
 ##Things before start (pretreat data set)
 
