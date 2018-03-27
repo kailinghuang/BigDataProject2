@@ -1,5 +1,6 @@
 install.packages("class")
 install.packages("gmodels")
+install.packages("vegan")
 library(class)
 library(gmodels)
 
@@ -193,6 +194,8 @@ mrf$habitat[mrf$habitat=='u']<-9
 mrf$habitat[mrf$habitat=='w']<-11
 mrf$habitat[mrf$habitat=='d']<-13
 
+
+dataset.df<-sample(nrow(mrf), 1*nrow(mrf))
 ## training-test dataset
 train.df<-sample(nrow(mrf), 0.7*nrow(mrf))
 #train.df<-sample(nrow(mrf), 0.6*nrow(mrf))
@@ -208,15 +211,10 @@ mrftest.df<-mrf[-train.df,]
 #mrftest.df<-mrf[-train.df,]
 
 
-# k-means (whether k-means need train and test data set????)
-# train
-kc3_train<-kmeans(mrftrain.df,3)
-#kc5_train<-kmeans(mrftrain.df,5)
-#kc7_train<-kmeans(mrftrain.df,7)
-# test
-kc3_test<-kmeans(mrftest.df,3)
-#kc5_test<-kmeans(mrftest.df,5)
-#kc7_test<-kmeans(mrftest.df,7)
+# k-means (no need train and test dataset)
+kc3<-kmeans(dataset.df,3)
+#kc5<-kmeans(dataset.df,5)
+#kc7<-kmeans(dataset.df,7)
 
 # knn
 # get train label
@@ -231,10 +229,13 @@ knn_test_label<-mrftest.df[,1]
 CrossTable(x=knn_test_label, y=knn_pred, prop.chisq=FALSE)
 
 # Hierarchical clustering
+library(vegan)
+distance.ex<-vegdist(mrftrain.df, method="euc", na.rm=TRUE)
+hclust.ex<-hclust(distance.ex, method="ward.D2")
+plot(hclust.ex,hang=-1)
 
 
+pairs(class~gattach+gspace+gsize+gcolor, data=mr)
 
-pairs(class~cshape+csurface+ccolor, data=mr)
-
-plot(class~sshape+sroot, data=mr)
+#plot(class~sshape+sroot, data=mr)
 
