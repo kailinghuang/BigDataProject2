@@ -1,6 +1,7 @@
 install.packages("class")
 install.packages("gmodels")
 install.packages("vegan")
+install.packages("e1071")
 library(class)
 library(gmodels)
 
@@ -239,3 +240,12 @@ pairs(class~gattach+gspace+gsize+gcolor, data=mr)
 
 #plot(class~sshape+sroot, data=mr)
 
+
+# SVM separate uncertain dataset
+library(e1071)
+uncertain<-mrf[mrf$class==1,]
+index<-sample(2, nrow(mrf), replace = TRUE, prob = c(0.7, 0.3))
+train_uc <-mrf[index==1, ]
+test_uc <- mrf[index==2, ]
+uc_dataset<-sample(nrow(mrf), 1*nrow(uncertain))
+sv<-svm(class ~ ., data=uc_dataset, cross=5, type='C-classification', kernel='sigmoid')
