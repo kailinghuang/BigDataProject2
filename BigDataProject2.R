@@ -236,16 +236,22 @@ hclust.ex<-hclust(distance.ex, method="ward.D2")
 plot(hclust.ex,hang=-1)
 
 
-pairs(class~gattach+gspace+gsize+gcolor, data=mr)
+pairs(class~cshape+csurface+ccolor+bruises+odor, data=mr)
+
+# lm model
+lm_model<-lm(mrftrain.df$ccolor ~ mrftrain.df$gspace, data=mrftrain.df)
+# lm predict
+lm_pred <- predict(lm_model, data=mrftest.df)
 
 #plot(class~sshape+sroot, data=mr)
-
+plot(mr$ccolor, mr$gspace, xlab = "ccolor", ylab='gspace',
+     main="ccolor-gspace graph")
 
 # SVM separate uncertain dataset
 library(e1071)
-uncertain<-mrf[mrf$class==1,]
 index<-sample(2, nrow(mrf), replace = TRUE, prob = c(0.7, 0.3))
 train_uc <-mrf[index==1, ]
 test_uc <- mrf[index==2, ]
+svm_model<-svm(class~., data=train_uc)
 uc_dataset<-sample(nrow(mrf), 1*nrow(uncertain))
 sv<-svm(class ~ ., data=uc_dataset, cross=5, type='C-classification', kernel='sigmoid')
