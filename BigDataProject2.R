@@ -242,10 +242,12 @@ pairs(class~cshape+csurface+ccolor+bruises+odor, data=mr)
 lm_model<-lm(mrftrain.df$ccolor ~ mrftrain.df$gspace, data=mrftrain.df)
 # lm predict
 lm_pred <- predict(lm_model, data=mrftest.df)
-
 #plot(class~sshape+sroot, data=mr)
 plot(mr$ccolor, mr$gspace, xlab = "ccolor", ylab='gspace',
      main="ccolor-gspace graph")
+
+#glm
+glm_res<-glm(as.numeric(mrf$ccolor) ~ as.numeric(mrf$gspace) + as.numeric(mrf$gsize) + as.numeric(mrf$gattach) + as.numeric(mrf$bruises), family = gaussian, data = mrf)
 
 # SVM separate uncertain dataset
 library(e1071)
