@@ -247,13 +247,15 @@ plot(mr$ccolor, mr$gspace, xlab = "ccolor", ylab='gspace',
      main="ccolor-gspace graph")
 
 #glm
-glm_res<-glm(as.numeric(mrf$ccolor) ~ as.numeric(mrf$gspace) + as.numeric(mrf$gsize) + as.numeric(mrf$gattach) + as.numeric(mrf$bruises), family = gaussian, data = mrf)
+glm_res<-glm(as.numeric(mrf$ccolor) ~ as.numeric(mrf$gspace) + as.numeric(mrf$gsize) + 
+               as.numeric(mrf$gattach) + as.numeric(mrf$bruises), family = gaussian, data = mrf)
+summary(glm_res)
 
 # SVM separate uncertain dataset
 library(e1071)
-index<-sample(2, nrow(mrf), replace = TRUE, prob = c(0.7, 0.3))
-train_uc <-mrf[index==1, ]
-test_uc <- mrf[index==2, ]
-svm_model<-svm(class~., data=train_uc)
-uc_dataset<-sample(nrow(mrf), 1*nrow(uncertain))
-sv<-svm(class ~ ., data=uc_dataset, cross=5, type='C-classification', kernel='sigmoid')
+# get uncertain dataset
+uncertain <- mrf[mrf$class==1,]
+uncertain.df<-sample(nrow(uncertain), 1*nrow(uncertain))
+svm_res <- svm(as.numeric(uncertain$ccolor) ~ as.numeric(uncertain$gspace) + 
+                 as.numeric(uncertain$gsize) + as.numeric(uncertain$gattach) + 
+                 as.numeric(uncertain$bruises), data=uncertain, kernel="linear")
